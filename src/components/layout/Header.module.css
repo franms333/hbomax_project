@@ -1,0 +1,93 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    /* this is because we want the header to be sticky later */
+    height: 8rem;
+    padding: 0 5.6rem;
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+    background: linear-gradient(180deg, #000, transparent);
+}
+
+.logo {
+    height: 3.7rem;
+}
+
+.leftNavbarItems {
+    display: flex;
+    gap: 2.4rem;    
+}
+
+.menu {
+    cursor: pointer;
+}
+
+.headerLinkTabs {
+    text-decoration: none;
+    color: #b8b8b8;
+    align-self: center;
+    font-size: 1.5rem;
+    font-weight: 600;
+    padding: 1rem 0;
+    transition: all 0.3s;
+}
+
+.headerLinkTabs:hover{
+    color: #e6e6e6;
+}
+
+.rightNavbarItems {
+    display: flex;
+    align-items: center;
+    gap: 2.4rem;  
+}
+
+.searchBar {
+    font-size: 2.5rem;
+    cursor: pointer;
+    color: #b8b8b8;
+    transition: all 0.3s;
+}
+
+.searchBar:hover {
+    color: #e6e6e6;
+}
+
+.userItems {
+    display: flex;
+    align-items: center;    
+    gap: 1rem;
+    cursor: pointer;
+}
+
+.userAvatar {
+    display: flex;
+    align-items: center;    
+    width: 3.7rem;
+    height: 3.7rem;
+    background: linear-gradient(#24082e, #351f43) padding-box,
+              linear-gradient(100deg, #b8b8b8, #b11b90, #fd3dd2) border-box;
+    border: 0.25rem solid transparent;
+    border-radius: 5rem;
+}
+
+.userAvatar p {
+    margin: auto;
+    font-size: 1.3rem;
+    font-weight: 700;
+    padding: 1rem;
+    color: #e6e6e6;
+}
+
+.username {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #e6e6e6;
+    padding-top: 0.5rem;
+}
+
+
+

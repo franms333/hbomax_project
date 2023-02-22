@@ -1,0 +1,83 @@
+.sliderContainer {
+    position: relative;
+}
+
+.img-responsive {
+    object-fit: cover;
+    height: 84vh;
+    width: 100%;
+}
+
+.prevButtonSlider {
+    position: absolute;
+    margin-left: 5rem;
+    z-index: 1; 
+    align-self: center; 
+}
+
+.nextButtonSlider {
+    position: absolute;
+    margin-right: 5rem;
+    z-index: 1; 
+    align-self: center; 
+}
+
+.dotSlider {
+    height: 0.8rem;
+    width: 0.8rem;
+    background-color: #808080;
+    border-radius: 50%;
+}
+
+:global(li.slick-active) div{
+    background-color: white;
+}
+
+.carouselImgInfo {
+    position: absolute;
+    margin-top: -20rem;
+    padding-left: 5.6rem;
+    line-height: 1.6;
+    z-index: 2;
+}
+
+.carouselImgInfo h3, 
+.carouselImgInfo p {
+    font-size: 1.3rem;
+    color: #e6e6e6;
+}
+
+.carouselImgInfo button {
+    font-family: 'AtlasGrotesk';
+    cursor: pointer;
+    padding: 1.6rem 3rem;
+    margin-top: 2.4rem;
+    border-radius: 0.5rem;
+    border: none;
+    background-color: #2B292F;
+    color: #e6e6e6;
+    transition: all 0.3s;
+}
+
+.carouselImgInfo button:hover {
+    box-shadow: 0 0 0 0.2rem rgb(117, 62, 239);
+    background-color: #1a1a1a;
+}
+
+.bottomGradient {
+    width: 100vw;
+    height: 30vh;
+    position: absolute;
+    margin-top: -30vh;
+    z-index: 1;
+    background: linear-gradient(0deg,
+        hsl(0, 0%, 0%) 0%,
+        hsla(0, 0%, 0%, 0.945) 40%,
+        hsla(0, 0%, 0%, 0) 100%
+    );
+}
+
+
+
+
+
