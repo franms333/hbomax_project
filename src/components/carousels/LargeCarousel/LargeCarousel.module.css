@@ -1,0 +1,34 @@
+.large_carousel--container {
+    padding: 5rem 5.6rem;
+    font-family: 'AtlasGrotesk';
+}
+
+.large_carousel--container h2 {
+    font-size: 1.8rem;
+    color: #e6e6e6;
+    margin-bottom: 1rem;
+    margin-left: 0.5rem;
+}
+
+.img-container {
+    padding: 0.7rem;
+}
+
+.img-carousel {
+    max-width: 100%;
+    margin-top: 1rem;
+    opacity: 0.5;
+    transition: all 0.3s;
+}
+
+.img-carousel:hover {
+    cursor: pointer;
+    opacity: 1;
+    border-radius: 0.3rem;
+    box-shadow: 0 0 0 0.2rem #1a1a1a,
+    0 0 0 0.4rem rgb(117, 62, 239);
+}
+
+.slick-slide {
+    margin-right: 2rem;
+}

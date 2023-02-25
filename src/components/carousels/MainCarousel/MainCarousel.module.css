@@ -10,7 +10,7 @@
 
 .prevButtonSlider {
     position: absolute;
-    margin-left: 5rem;
+    margin-left: 5rem;    
     z-index: 1; 
     align-self: center; 
 }
@@ -35,10 +35,15 @@
 
 .carouselImgInfo {
     position: absolute;
-    margin-top: -20rem;
-    padding-left: 5.6rem;
+    margin-top: -25rem;
+    padding-left: 6.1rem;
     line-height: 1.6;
     z-index: 2;
+}
+
+.carouselImgInfo h2 {
+    font-size: 6.2rem;
+    color: #e6e6e6;
 }
 
 .carouselImgInfo h3, 
@@ -72,7 +77,14 @@
     z-index: 1;
     background: linear-gradient(0deg,
         hsl(0, 0%, 0%) 0%,
-        hsla(0, 0%, 0%, 0.945) 40%,
+        hsla(0, 0%, 0%, 0.9) 20%,
+        hsla(0, 0%, 0%, 0.8) 30%,
+        hsla(0, 0%, 0%, 0.7) 40%,
+        hsla(0, 0%, 0%, 0.6) 50%,
+        hsla(0, 0%, 0%, 0.5) 60%,
+        hsla(0, 0%, 0%, 0.4) 70%,
+        hsla(0, 0%, 0%, 0.3) 80%,
+        hsla(0, 0%, 0%, 0.2) 90%,
         hsla(0, 0%, 0%, 0) 100%
     );
 }
