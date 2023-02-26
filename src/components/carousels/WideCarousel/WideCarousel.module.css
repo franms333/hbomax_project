@@ -1,6 +1,10 @@
-.wideCarousel{
+.overlayMarginTop {
     margin-top: -15rem;
+}
+
+.wideCarousel{    
     padding: 0 5.6rem;
+    margin-bottom: 2rem;
     font-family: 'AtlasGrotesk';
 }
 
@@ -20,6 +24,10 @@
     margin-top: 1rem;
     opacity: 0.5;
     transition: all 0.3s;
+}
+
+.img-carousel-height {
+    height: 28.5rem;
 }
 
 .img-carousel:hover {

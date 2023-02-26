@@ -34,28 +34,46 @@ const LargeCarousel = (props) => {
         fetchOriginalsHandler();
     }, []);
 
+    function _renderLargeCarousel() {
+        if (originals.length === 0) return <div></div>
+        else return content;
+    }
+
     const settings = {
         lazyload: 'progressive',
         dots: false,
         infinite: false,
-        slidesToShow: 4,
-        slidesToScroll: 4,
+        slidesToShow: 3,
+        slidesToScroll: 1,
         initialSlide: 0,
         draggable: false,
-        variableWidth: true
+        variableWidth: true,
+        responsive: [
+            {
+              breakpoint: 1300,
+              settings: {
+                slidesToShow: 3,
+                slidesToScroll: 1,
+                infinite: true,
+                initialSlide: 0
+              }
+            }
+        ]
     }
+
+    const content = <div className={classes['large_carousel--container']}>
+                        {<h2>{`${props.network} Originals`}</h2>}
+                        <Slider {...settings}>
+                            {originals.map((card, index) => (
+                            <div key={index} className={classes['img-container']}>
+                                <img alt={card.title} src={card.poster} className={classes['img-carousel']} title={card.title}/>
+                            </div>
+                            ))}    
+                        </Slider>
+                    </div>
     return (
         <>
-            <div className={classes['large_carousel--container']}>
-                {<h2>{`${props.network} Originals`}</h2>}
-                <Slider {...settings}>
-                    {originals.map((card, index) => (
-                    <div key={index} className={classes['img-container']}>
-                        <img alt={card.title} src={card.poster} className={classes['img-carousel']} title={card.title}/>
-                    </div>
-                    ))}    
-                </Slider>
-            </div>
+            {_renderLargeCarousel()}
         </>
     )
 }

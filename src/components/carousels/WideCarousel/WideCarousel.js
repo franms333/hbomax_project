@@ -47,9 +47,16 @@ const WideCarousel = (props) => {
           
           const posterPath = show.poster.split("/");
           
-          if(!show.poster.includes('https')){
-              show.poster = `https://simkl.in/posters/${posterPath[0]}/${posterPath[1]}_w.jpg`;
-          } 
+          if(props.imageType === 'fanart'){
+            if(!show.fanart.includes('https')){
+              const fanartPath = show.fanart.split("/");
+              show.fanart = `https://simkl.in/fanart/${fanartPath[0]}/${fanartPath[1]}${props.imageSize}.jpg`;
+            }
+          }else {
+            if(!show.poster.includes(props.imageSize)){
+                show.poster = `https://simkl.in/posters/${posterPath[0]}/${posterPath[1]}${props.imageSize}.jpg`;
+            } 
+          }
     
           show.title = showData.title;
         }
@@ -57,13 +64,17 @@ const WideCarousel = (props) => {
         setIsValid(true);
     }
 
+    const formattedClasses = props.imageSize === '_ca' ? `${classes['img-carousel']} ${classes['img-carousel-height']}` : `${classes['img-carousel']}`;
+
+    const imageToSlide = props.slidestoScroll ? parseInt(props.slidestoScroll) : 6;
+
     const settings = {
         lazyload: 'progressive',
         dots: false,
         infinite: false,
         speed: 500,
-        slidesToShow: 6,
-        slidesToScroll: 6,
+        slidesToShow: parseInt(props.imagePerSlide),
+        slidesToScroll: imageToSlide,
         initialSlide: 0,
         draggable: false,
         responsive: [
@@ -116,12 +127,12 @@ const WideCarousel = (props) => {
     };
     return(
         <>
-            <div className={classes.wideCarousel}>
-                {isValid && <h2> Trending TV Shows </h2>}
+            <div className={`${classes.wideCarousel} ${classes[props.marginTop]}`}>
+                {isValid && <h2>{props.title}</h2>}
                 <Slider {...settings}>
                     {trendingTvShows.map((card, index) => (
                     <div key={index} className={classes['img-container']}>
-                        <img alt={card.title} src={card.poster} className={classes['img-carousel']} title={card.title}/>
+                        <img alt={card.title} src={props.imageType === 'fanart' ? card.fanart : card.poster} className={formattedClasses} title={card.title}/>
                     </div>
                     ))}    
                 </Slider>
