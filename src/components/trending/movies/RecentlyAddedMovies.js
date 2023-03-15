@@ -1,27 +1,49 @@
 import { useEffect, useState } from 'react';
 import WideCarousel from '../../carousels/WideCarousel/WideCarousel';
-import classes from './RecentlyAddedMovies.module.css';
+import useHttp from '../../hooks/useHttp';
 
 const RecentlyAddedMovies = (props) => {
     const [movies, setMovies] = useState([]);
 
-    const fetchMoviesHandler = async () => {
-        if(!props.category) return;
-        
-        const response = await fetch(`https://api.simkl.com/movies/${props.category}/`);
-          if (!response.ok) {
-            throw new Error('Something went wrong!');
+    const {sendRequest:fetchMovies} = useHttp();
+    
+      useEffect(() => {
+        const transformMovies = (movies) => {
+          setMovies(movies);
+      }
+      fetchMovies({url:`https://api.simkl.com/movies/${props.category}/month`}, transformMovies);
+      }, []);
+    
+    let settings = {
+      lazyload: 'progressive',
+      dots: false,
+      infinite: false,
+      speed: 500,
+      slidesToShow: 3,
+      slidesToScroll: 3,
+      initialSlide: 0,
+      draggable: false,
+      responsive: [
+          {
+            breakpoint: 1000,
+            settings: {
+              slidesToShow: 2,
+              slidesToScroll: 2,
+              infinite: true,
+              initialSlide: 0
+            }
+          },
+          {
+            breakpoint: 480,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1,
+              infinite: true,
+              initialSlide: 0
+            }
           }
-    
-          const data = await response.json();
-    
-          setMovies(data);
-      };
-
-    useEffect(() => {
-        fetchMoviesHandler();
-    }, []);
-
+        ]
+    };
     function _renderWideCarousel() {
         if (movies.length === 0) return <div></div>
         else return  <WideCarousel 
@@ -30,7 +52,9 @@ const RecentlyAddedMovies = (props) => {
                     imageSize='_w'
                     imageType='fanart'
                     imagePerSlide='3'
-                    slidestoScroll='3'/>
+                    slidestoScroll='3'
+                    settings={settings}
+                    onFinish={props.onFinish}/>
     }
 
     return (

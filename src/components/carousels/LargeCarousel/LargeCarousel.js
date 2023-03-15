@@ -1,49 +1,49 @@
-import { useState } from 'react';
+import useHttp from '../../hooks/useHttp';
+import { useEffect, useState } from 'react';
 import classes from './LargeCarousel.module.css';
 
 import Slider from "react-slick";
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
-import 'slick-carousel/slick/slick.css'
-import 'slick-carousel/slick/slick-theme.css'
+import { IonIcon } from '@ionic/react';
+import { chevronForwardOutline } from 'ionicons/icons';
+import { formatPosters } from '../../shared/GetMediaFullInfo';
+
+import { shallow } from 'zustand/shallow';
+import useLoadingStore from '../../../store/loading-store';
 
 const LargeCarousel = (props) => {
     const [originals, setOriginals] = useState([]);
+    const [finishedOriginalShows, isReady] = useLoadingStore(
+      (state) => [state.finishedOriginalShows, state.isReady]
+      
+    );
 
-    const fetchOriginalsHandler = async () => {
-        const response = await fetch(`https://api.simkl.com/tv/genres/${props.network}`);
+    const {sendRequest:fetchTvSeries} = useHttp();
 
-        if (!response.ok) {
-            throw new Error('Something went wrong!');
-        }
-
-        const data = await response.json();
-
-        for(let item of data){
-            
-            const posterPath = item.poster.split("/");
-            
-            if(!item.poster.includes('https')){
-                item.poster = `https://simkl.in/posters/${posterPath[0]}/${posterPath[1]}_m.jpg`;
-            } 
-        }
-
-        setOriginals(data);
-    }
-
-    useState(()=>{
-        fetchOriginalsHandler();
+    useEffect(() => {
+        const loadedOriginals = [];
+        const formatTvSeries = (tvShows) => {  
+            for(let item of tvShows){
+                loadedOriginals.push(formatPosters(item));
+            }
+            setOriginals(loadedOriginals); 
+            finishedOriginalShows(); 
+        }    
+        fetchTvSeries({url:`https://api.simkl.com/tv/genres/${props.network}`}, formatTvSeries);                  
     }, []);
 
-    function _renderLargeCarousel() {
-        if (originals.length === 0) return <div></div>
-        else return content;
-    }
+    const title =   <div className={classes.label}>
+                        <h2>{`${props.network} Originals`}</h2>
+                        <IonIcon icon={chevronForwardOutline} size='small' className={classes['ion-icon']}/>
+                    </div>
 
     const settings = {
         lazyload: 'progressive',
         dots: false,
         infinite: false,
-        slidesToShow: 3,
+        slidesToShow: 4,
         slidesToScroll: 1,
         initialSlide: 0,
         draggable: false,
@@ -55,14 +55,35 @@ const LargeCarousel = (props) => {
                 slidesToShow: 3,
                 slidesToScroll: 1,
                 infinite: true,
-                initialSlide: 0
+                initialSlide: 0,
+                variableWidth: false,
               }
-            }
+            },
+            {
+                breakpoint: 768,
+                settings: {
+                  slidesToShow: 2,
+                  slidesToScroll: 1,
+                  infinite: true,
+                  initialSlide: 0,
+                  variableWidth: false,
+                }
+              },
+              {
+                breakpoint: 500,
+                settings: {
+                  slidesToShow: 1,
+                  slidesToScroll: 1,
+                  infinite: true,
+                  initialSlide: 0,
+                  variableWidth: false,
+                }
+              }
         ]
     }
 
     const content = <div className={classes['large_carousel--container']}>
-                        {<h2>{`${props.network} Originals`}</h2>}
+                        {title}
                         <Slider {...settings}>
                             {originals.map((card, index) => (
                             <div key={index} className={classes['img-container']}>
@@ -71,11 +92,9 @@ const LargeCarousel = (props) => {
                             ))}    
                         </Slider>
                     </div>
-    return (
-        <>
-            {_renderLargeCarousel()}
-        </>
-    )
+    
+    if (originals.length === 0 || !isReady()) return <div></div>
+    else return content;
 }
 
 export default LargeCarousel;

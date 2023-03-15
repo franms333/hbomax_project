@@ -5,14 +5,28 @@
 .wideCarousel{    
     padding: 0 5.6rem;
     margin-bottom: 2rem;
-    font-family: 'AtlasGrotesk';
+    font-family: 'AtlasGroteskMedium';
 }
 
-.wideCarousel h2 {
-    font-size: 1.8rem;
-    color: #e6e6e6;
+.label {
+    display: inline-flex; 
+    align-items: center;
     margin-bottom: 1rem;
     margin-left: 0.7rem;
+    cursor: pointer;
+}
+
+.label h2 {
+    font-size: 1.8rem;
+    color: #e6e6e6;
+}
+
+.label :nth-child(2){
+    transition: all 0.3s;
+}
+
+.label:hover :nth-child(2) {
+    color: #e6e6e6;
 }
 
 .img-container {

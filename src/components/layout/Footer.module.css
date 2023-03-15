@@ -1,0 +1,51 @@
+.footer {
+    width: 100vw;
+    height: 24rem;
+    padding: 12rem 7.6rem 4rem 6rem;
+    font-family: 'AtlasGroteskMedium';    
+}
+
+.rights-message {
+    text-align: right;
+    margin-left: auto;
+    padding-bottom: 2rem;
+    font-size: 1.3rem;
+    color: #9E94A0;
+}
+
+.bottom-footer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.social-media {
+    width: 12rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.icon {
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.icon:hover {
+    color: #e6e6e6;
+}
+
+.links-container {
+    width: 20rem;
+    display: flex;    
+    justify-content: space-between;
+}
+
+.link {    
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: #9E94A0;
+    transition: all 0.3s;
+}
+
+.link:hover {
+    color: #e6e6e6;
+}

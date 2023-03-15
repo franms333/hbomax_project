@@ -1,10 +1,15 @@
-import classes from './MainCarousel.module.css'
+import classes from './MainCarousel.module.css';
 
 import Slider from "react-slick";
 
-import 'slick-carousel/slick/slick.css'
-import 'slick-carousel/slick/slick-theme.css'
 import { useEffect, useState } from 'react';
+import 'slick-carousel/slick/slick-theme.css';
+import 'slick-carousel/slick/slick.css';
+import useLoadingStore from '../../../store/loading-store';
+import useHttp from '../../hooks/useHttp';
+import { formatLoopedItems } from '../../shared/GetMediaFullInfo';
+
+import { shallow } from 'zustand/shallow';
 
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
@@ -26,36 +31,29 @@ function SamplePrevArrow(props) {
       onClick={onClick}
     />
   );
-}
+}   
 
 const MainCarousel = ({items = []}) => {
   const [tvShows, setTvShows] = useState([]);
+  const [finishedMainSeries, isReady] = useLoadingStore(
+    (state) => [state.finishedMainSeries, state.isReady]
+    
+  );
+
+  const {sendRequest:fetchTvSeries} = useHttp();
 
   useEffect(() => {
-    formatItems();
-  });
-
-  if(items.length <= 0) return <div></div>;
-
-  async function formatItems() {
-    for(let show of items){
-      const fullShowInfo = await fetch(`https://api.simkl.com/tv/${show.ids.simkl_id}/`);
-
-      if (!fullShowInfo.ok) {
-        throw new Error('Something went wrong!');
-      };
-
-      const showData = await fullShowInfo.json();
-      const fanartPath = show.fanart.split("/");
-    
-      if(!show.fanart.includes('https')){
-      show.fanart = `https://simkl.in/fanart/${fanartPath[0]}/${fanartPath[1]}_medium.jpg`;
+    const loadedShows = [];
+    const loopShows = async () => {
+      for(let show of items){ 
+        await fetchTvSeries({url:`https://api.simkl.com/tv/${show.ids.simkl_id}/`}, (tvShow) => loadedShows.push(formatLoopedItems(show, tvShow, 'fanart')));
       }
-
-      show.title = showData.title;
+      setTvShows(loadedShows);
+      finishedMainSeries();    
     }
-    setTvShows(items);
-  }
+    
+    loopShows();
+  }, []);
 
   const onButtonClicked = (oEvent) => {
     console.log(oEvent);
@@ -92,6 +90,8 @@ const MainCarousel = ({items = []}) => {
     )
     
   };
+
+  if(!isReady()) return <div></div>
     return (
         <div>
           <Slider {...settings} className={classes.sliderContainer}>

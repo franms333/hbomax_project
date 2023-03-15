@@ -1,6 +1,17 @@
 @font-face {
-  font-family: 'AtlasGrotesk';
-  src: url('./fonts/AtlasGrotesk-Medium.otf'), url('./fonts/AtlasGrotesk-Black.otf');
+  font-family: 'AtlasGroteskLight';
+  src: url('./fonts/AtlasGrotesk-Light.otf');
+  font-size: normal;
+}
+@font-face {
+  font-family: 'AtlasGroteskMedium';
+  src: url('./fonts/AtlasGrotesk-Medium.otf');
+  font-size: medium;
+}
+@font-face {
+  font-family: 'AtlasGroteskBold';
+  src: url('./fonts/AtlasGrotesk-Black.otf');
+  font-size: bold;
 }
 
 * {
@@ -20,9 +31,18 @@ html {
 body {
   height: 100vh;
   /* font-family: 'Avenir', Helvetica, Arial, sans-serif; */
-  font-family: 'AtlasGrotesk', sans-serif;
+  font-family: 'AtlasGroteskMedium', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #666564;
-  background: linear-gradient(115deg, black, #17052F, #24082E);
+  background: linear-gradient(150deg, black 25%, #17052F, #24082E);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+
+  /* Prevent user from copying data */
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
