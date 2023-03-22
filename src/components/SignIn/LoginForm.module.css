@@ -1,0 +1,167 @@
+.title {
+    display: flex;
+    justify-content: center;
+    font-size: 2rem;
+    font-family: 'AtlasGroteskBold';
+    font-weight: bold;
+    color: white;
+}
+
+.card {
+    color: white;
+    padding: 6rem;    
+    font-family: 'AtlasGroteskLight';
+    font-size: 1.6rem;
+    max-width: 120rem;
+    backdrop-filter: blur(14px);
+    background-color: rgba(221, 221, 221, 0.06);
+    border-radius: 0.8rem;
+    margin: 3rem;
+}
+
+.card-message{
+    font-size: 1.6rem;
+    line-height: 21px;
+    margin-bottom: 2rem;
+}
+
+.card input{
+    display: block;
+    margin-bottom: 1.5rem;
+    border-radius: 4px;
+    padding-left: 1.6rem;
+    border: 1px solid white;
+    background-color: rgba(221, 221, 221, 0);
+    color: white;
+    font-size: 1.6rem;
+    width: 120rem;
+    max-width: 100%;
+    height: 5rem;
+}
+
+.card input::placeholder{
+    font-family: inherit;
+    font-size: 1.6rem;
+    color: #ccc;
+}
+
+.card input:focus {
+    color: white !important;
+}
+
+.login-action {
+    display: flex;
+    align-items: center;
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+}
+
+.login-action button{
+    font-family: 'AtlasGroteskMedium';
+    cursor: pointer;
+    padding: 1.6rem 4.5rem;
+    border-radius: 0.5rem;
+    border: none;
+    background-color: #2B292F;
+    color: #e6e6e6;
+    transition: all 0.3s;
+}
+
+.login-action button:hover {
+    box-shadow: 0 0 0 0.2rem rgb(117, 62, 239);
+    background-color: #1a1a1a;
+}
+
+.login-action 
+button:disabled,
+button:disabled:hover,
+button:disabled:active{
+    background-color: rgba(221, 221, 221, 0.06);
+    cursor: default;
+    box-shadow: none;
+}
+
+.login-action p{
+    font-family: 'AtlasGroteskBold';
+    padding-left: 3rem;
+    color: #8576E5;
+    cursor: pointer;
+}
+
+.separator {
+    display: flex;
+    align-items: center;
+}
+
+.separator-left-line {
+    width: 100%;    
+    border: solid 0.1px #e6e6e65e;
+}
+
+.separator-text {    
+    font-family: 'AtlasGroteskBold';
+    font-size: 1.5rem;
+    margin-left: 2rem;
+    margin-right: 3rem;
+    color: #e6e6e6;
+}
+
+.separator-right-line {
+    width: 100%;
+    border: solid 0.1px #e6e6e65e;
+}
+
+.sign-with-provider-message {
+    font-family: inherit;
+    line-height: 1.5;
+    font-size: 1.6rem;
+    margin-top: 4rem;
+    margin-bottom: 2rem;
+}
+
+.sign-with-provider-button{
+    font-family: 'AtlasGroteskMedium';
+    cursor: pointer;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    border: none;
+    background-color: #2B292F;
+    color: #e6e6e6;
+    transition: all 0.3s;
+}
+
+.sign-with-provider-button:hover {
+    box-shadow: 0 0 0 0.2rem rgb(117, 62, 239);
+    background-color: #1a1a1a;
+}
+
+.help-message {
+    display: flex;
+    justify-content: center;
+    font-family: 'AtlasGroteskBold';
+    font-size: 1.4rem;
+    padding: 1.5rem;
+    color: #8576E5;
+    cursor: pointer;
+}
+
+.invalid{
+    border: 1px solid #E24446 !important;
+    color: white !important;
+}
+
+.invalid:focus{
+    color: black !important;
+}
+
+.invalid::placeholder{
+    color: #E24446 !important;
+}
+
+.error-message{
+    font-family: 'AtlasGroteskBold';
+    font-size: 1.2rem;
+    color: #E24446;
+    margin-top: -1.2rem;
+    margin-bottom: 1rem;
+}
