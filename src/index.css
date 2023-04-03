@@ -35,6 +35,10 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #666564;  
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+
+  
 
   /* Prevent user from copying data */
   -webkit-user-select: none;

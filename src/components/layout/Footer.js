@@ -17,7 +17,7 @@ const Footer = () => {
             <div className={classes['rights-message']}>
                 <p>&copy; 2023 WarnerMedia Direct, LLC. All rights reserved.</p>
             </div>
-            <div className={classes['bottom-footer']}>
+            {/* <div className={classes['bottom-footer']}> */}
                 <div className={classes['social-media']}>
                     <IonIcon icon={logoYoutube} size='small' className={classes.icon}/>
                     <IonIcon icon={logoTwitter} size='small' className={classes.icon}/>
@@ -30,7 +30,7 @@ const Footer = () => {
                     <p className={classes.link}>Help</p>
                     <p className={classes.link}>Devices</p>
                 </div>
-            </div>
+            {/* </div> */}
         </div>
     )
 }

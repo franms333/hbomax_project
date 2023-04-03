@@ -68,3 +68,10 @@
     transform: translate(24px, 0);
   }
 }
+
+@media (max-width: 500px) {
+  .container {
+    top: 50%;
+    left: 42%;    
+  }
+}

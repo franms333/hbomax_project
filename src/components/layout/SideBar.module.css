@@ -8,12 +8,12 @@
 }
 
 .containter {
-    position: absolute;
+    position: fixed;
     font-family: 'AtlasGroteskLight';
     background-color: #0f0f0f;
     width: 32rem;
     height: 100%;
-    min-height: 100vh;
+    /* min-height: 100vh; */
     padding: 3rem 6rem;
     overflow-y: scroll;
     z-index: 99;
@@ -81,4 +81,14 @@ hr {
 
 .brands-container img:hover {
     filter: opacity(50%);
+}
+
+body.sidebar-open {
+    overflow-y: hidden;
+}
+
+@media (max-width: 500px){
+    .containter {
+        position: fixed;
+    }
 }

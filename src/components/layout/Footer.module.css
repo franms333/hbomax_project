@@ -3,7 +3,17 @@
     height: 24rem;
     padding: 12rem 7.6rem 4rem 6rem;
     font-family: 'AtlasGroteskMedium';    
+
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
 }
+
+.footer>div:first-child {
+    flex: 0 1 100%;
+}
+
 
 .rights-message {
     text-align: right;
@@ -48,4 +58,32 @@
 
 .link:hover {
     color: #e6e6e6;
+}
+
+@media (max-width: 500px) {
+    .footer {
+        flex-wrap: nowrap;
+        flex-direction: column;
+        padding: 12rem 2rem 2rem 2rem;
+    }
+
+    .rights-message {
+        padding-top: 4rem;
+        font-size: 1rem;
+        text-align: left;
+        margin-left: 0;
+    }
+
+    .rights-message:first-child{
+        order: 2;
+    }
+
+    .social-media{
+        order: 1;
+    }
+
+    .links-container{
+        padding-bottom: 2rem;
+        order: 3;
+    }
 }

@@ -14,6 +14,7 @@ import useLoadingStore from './store/loading-store';
 import {Navigate, Route, Routes, useLocation} from 'react-router-dom';
 import LoadingOverlayWrapper from 'react-loading-overlay-ts';
 import SideBar from './components/layout/SideBar';
+import { useEffect } from 'react';
 
 function App() {
   const path = useLocation().pathname;
@@ -33,6 +34,14 @@ function App() {
                 state.showMenu
               ]
   );
+
+  useEffect(() => {
+    if (showMenu) {
+        document.body.style.overflowY = 'hidden';
+    } else {
+        document.body.style.overflowY = 'auto';
+    }
+  }, [showMenu]);
 
   const bg_image = path === '/signup' ? 'signup_bg' : 'default_bg';
   const mainClasses = !isReady() ? 'loading_bg' : '';
@@ -87,8 +96,6 @@ function App() {
                               </main>
                             </LoadingOverlayWrapper>
                           </>
-
-  
   
   return (
       <div className={bg_image} style={{position:'relative'}}>
