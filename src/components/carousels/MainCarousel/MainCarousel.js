@@ -8,8 +8,7 @@ import 'slick-carousel/slick/slick.css';
 import useLoadingStore from '../../../store/loading-store';
 import useHttp from '../../hooks/useHttp';
 import { formatLoopedItems } from '../../shared/GetMediaFullInfo';
-
-import { shallow } from 'zustand/shallow';
+import Timer from './Timer';
 
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
@@ -35,10 +34,7 @@ function SamplePrevArrow(props) {
 
 const MainCarousel = ({items = []}) => {
   const [tvShows, setTvShows] = useState([]);
-  const [finishedMainSeries, isReady] = useLoadingStore(
-    (state) => [state.finishedMainSeries, state.isReady]
-    
-  );
+  const [finishedMainSeries, isReady] = useLoadingStore((state) => [state.finishedMainSeries, state.isReady]);
 
   const {sendRequest:fetchTvSeries} = useHttp();
 
@@ -70,23 +66,8 @@ const MainCarousel = ({items = []}) => {
     draggable: false,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
-    appendDots: dots => (
-      <div
-        style={{
-          paddingLeft: '4rem',
-          zIndex: 2,
-        }}
-      >
-        <ul> {dots.map((item, index) => {
-          return (
-            <li key={index} className={item.props.className}>{item.props.children}</li>
-          )
-        })} </ul>
-      </div>
-    ),
     customPaging: () => (
-      <div className={classes.dotSlider}>
-      </div>
+      <div className={classes.dotSlider} />
     )
     
   };
@@ -98,6 +79,12 @@ const MainCarousel = ({items = []}) => {
               {tvShows.map((card, index) => (
               <div key={index}>
                   <img alt={card.title} src={card.fanart} className={classes['img-responsive']} />
+                  {/* <Timer 
+                  threshold={2000}
+                  imageUrl={card.fanart}
+                  videoUrl={card.trailer}
+                  title={card.title}
+                  fanart={card.fanart}/> */}
                   <div className={classes.carouselImgInfo}>
                     <h2>{card.title}</h2>
                     <h3>NEW EPISODES AVAILABLE</h3>

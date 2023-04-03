@@ -15,11 +15,17 @@ const useHttp = () => {
             );
       
             if (!response.ok) {
-              throw new Error('Request failed!');
+              let errorMessage;
+              const errorData = await response.json();
+              if(errorData && errorData.error && errorData.error.message){
+                errorMessage = errorData.error.message;
+              }
+              
+              throw new Error(errorMessage);
             }
       
             const data = await response.json();
-      
+            
             applyData(data);
         } catch (err) {
             setError(err.message || 'Something went wrong!');
@@ -27,7 +33,8 @@ const useHttp = () => {
       };
     
     return {
-        sendRequest
+        sendRequest,
+        error
     }
 }
 

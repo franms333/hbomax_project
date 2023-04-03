@@ -58,6 +58,24 @@ Default: 9px
 
 */
 
+.loading_bg{
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.default_bg{
+    background: linear-gradient(150deg, black 25%, #17052F, #24082E);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
+.signup_bg{
+    background-image: url('./shared/sign_up_bg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 .topGradient {
     width: 100vw;
     height: 30vh;
@@ -73,6 +91,6 @@ Default: 9px
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh;
 }
+
 

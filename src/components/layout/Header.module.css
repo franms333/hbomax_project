@@ -29,6 +29,11 @@
 
 .menu {
     cursor: pointer;
+    transition: all 0.2s;
+}
+
+.menu:hover{
+    color: white;
 }
 
 .headerLinkTabs {
@@ -95,5 +100,46 @@
     padding-top: 0.5rem;
 }
 
+@media (max-width: 500px) {
 
+    .header {
+        padding: 0 2rem;
+    }
+
+    .logo {
+        margin-left: 4rem;
+    }
+
+    .leftNavbarItems a{
+        display: none;
+    }
+
+    .rightNavbarItems {
+        width: 7rem;
+        gap: 1.5rem;
+    }    
+
+    #username {
+        display: none;
+    }
+
+    .userAvatar {
+        width: 3rem;
+        height: 3rem;
+    }
+
+    .userAvatar p{
+        padding: 0.6rem;
+    }
+
+    .searchBar {
+        color: white;
+        font-size: 2rem;
+    }
+
+    .menu {
+        color: white;
+    }
+
+}
 

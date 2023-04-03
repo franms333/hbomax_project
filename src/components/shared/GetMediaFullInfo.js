@@ -10,6 +10,8 @@ const formatLoopedItems = (item, itemInfo, type='', size='_medium') => {
             item.poster = `https://simkl.in/posters/${posterPath[0]}/${posterPath[1]}${size}.jpg`;
         } 
     }
+    item.trailer = `https://simkl.com/tv/${item.ids.simkl_id}/trailer`;
+
     item.title = itemInfo.title;       
   
     return item;

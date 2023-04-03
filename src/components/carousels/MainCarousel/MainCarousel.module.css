@@ -23,6 +23,7 @@
 }
 
 .dotSlider {
+    margin-top: -1rem;
     height: 0.8rem;
     width: 0.8rem;
     background-color: #808080;
@@ -69,6 +70,12 @@
     background-color: #1a1a1a;
 }
 
+.dots {
+    padding-left: 4rem;
+    background-color: red;
+    z-index: 2;
+}
+
 .bottomGradient {
     width: 100vw;
     height: 30vh;
@@ -89,6 +96,38 @@
     );
 }
 
+@media (max-width: 500px) {
+    .img-responsive {
+        object-fit: cover;
+        height: 65vh;
+        width: 100%;
+    }
+
+    .dotSlider{
+        margin-top: 1rem;
+    }
+
+    .carouselImgInfo{
+        bottom: 0;
+        position: fixed;
+        padding-top: 4rem;
+        padding-bottom: 2rem;
+    }
+
+    .carouselImgInfo h2{
+        justify-self: center;
+        width: 80%;
+        font-size: 3rem;
+    }
+
+    .carouselImgInfo p{
+        width: 80%;
+    }
+
+    .carouselImgInfo button {
+        display: none;
+    }
+}
 
 
 

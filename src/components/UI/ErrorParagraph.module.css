@@ -1,0 +1,10 @@
+.box {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background-color: #e2444749;
+    color: #E24446;
+    padding: 1.3rem 1.5rem;
+    margin-bottom: 2rem;
+    border-radius: 0.5rem;
+}

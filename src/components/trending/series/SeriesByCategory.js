@@ -85,7 +85,7 @@ const SeriesByCategory = (props) => {
                     draggable: false,
                     responsive: [
                         {
-                          breakpoint: 1300,
+                          breakpoint: 1400,
                           settings: {
                             slidesToShow: 6,
                             slidesToScroll: 6,
