@@ -38,8 +38,10 @@ function App() {
   useEffect(() => {
     if (showMenu) {
         document.body.style.overflowY = 'hidden';
+        // document.body.style.height = '100vh';
     } else {
         document.body.style.overflowY = 'auto';
+        // document.body.style.height = 'auto';
     }
   }, [showMenu]);
 

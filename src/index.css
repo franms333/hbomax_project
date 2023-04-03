@@ -29,7 +29,6 @@ html {
 }
 
 body {
-  height: 100vh;
   /* font-family: 'Avenir', Helvetica, Arial, sans-serif; */
   font-family: 'AtlasGroteskMedium', sans-serif;
   -webkit-font-smoothing: antialiased;

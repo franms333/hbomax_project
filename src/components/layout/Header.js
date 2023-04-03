@@ -2,8 +2,8 @@ import { IonIcon } from '@ionic/react';
 import { menuOutline, searchOutline } from 'ionicons/icons';
 import { useEffect, useState } from 'react';
 import brandLogo from '../../shared/brand-logo.png';
-import classes from './Header.module.css';
 import useLoadingStore from '../../store/loading-store';
+import classes from './Header.module.css';
 
 const Header = () => {
     const [navbar, setNavbar] = useState(false);
@@ -22,7 +22,7 @@ const Header = () => {
     useEffect(() => {
         changeBackground()
         // adding the event when scroll change background
-        window.addEventListener("scroll", changeBackground)
+        window.addEventListener("scroll", changeBackground);
     }, [])
 
     const showMenuHandler = () => {
