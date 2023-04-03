@@ -1,10 +1,19 @@
 # Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+HBO Max React.js Project
+
+![](https://github.com/hbomax_project/hbo_max_app_test.gif)
 
 ## Available Scripts
 
-In the project directory, you can run:
+This project was entirely made using React.js for the Front End. For the Back End environment it was used the Firebase functions to store data and manage authentication.
+This project features:
+ - Zustand for managing global states.
+ - React Routes for managing page's routes.
+ - API REST calls for retrieving the info of movies and shows.
+ - Third party libraries such as: Slick.js for carousels and React Loading Overlay for loading spinners.
+
+The app's deployed in Firebase, please use the following link to access to a real time test: 
 
 ### `npm start`
 
