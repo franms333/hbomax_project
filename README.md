@@ -1,6 +1,4 @@
-# Getting Started with Create React App
-
-HBO Max React.js Project
+# HBO Max React.js Project
 
 ![](https://github.com/hbomax_project/hbo_max_app_test.gif)
 
