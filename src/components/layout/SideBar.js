@@ -1,29 +1,36 @@
-import classes from './SideBar.module.css'
+import classes from './SideBar.module.css';
 
 import { IonIcon } from '@ionic/react';
-import { closeOutline, chevronForwardOutline } from 'ionicons/icons';
+import { chevronForwardOutline, closeOutline } from 'ionicons/icons';
+import batmanLogo from '../../shared/batman_icon.png';
+import cartoonNetworkLogo from '../../shared/cartoon_network_icon.png';
 import hboLogo from '../../shared/hbo_icon.png';
 import hboMaxLogo from '../../shared/hbo_max_icon.png';
 import warnerBrosLogo from '../../shared/warner_bros_icon.png';
-import batmanLogo from '../../shared/batman_icon.png';
-import cartoonNetworkLogo from '../../shared/cartoon_network_icon.png';
 import useLoadingStore from '../../store/loading-store';
-import { useEffect } from 'react';
-import { shallow } from 'zustand/shallow';
+import { useState } from 'react';
+
+import 'animate.css'
 
 const SideBar = () => {
+    const [cssClasses, setCssClasses] = useState(`${classes.containter} animate__animated animate__fadeInLeft`)
     const [setShowMenu] = useLoadingStore(
         (state) => [state.setShowMenu]
     );    
 
+
     const closeMenuHandler = () => {
-        setShowMenu(false);
+        setCssClasses(`${classes.containter} animate__animated animate__fadeOutLeft`)
+        setTimeout(()=>{
+            setShowMenu(false);
+        }, 500)
+        
     }
 
     return (
         <>
             <div className={classes.backdrop} onClick={closeMenuHandler} />
-            <div className={classes.containter}>
+            <div className={cssClasses}>
                 <IonIcon 
                 icon={closeOutline} 
                 size='large' 

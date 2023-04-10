@@ -4,12 +4,17 @@ import { useEffect, useState } from 'react';
 import brandLogo from '../../shared/brand-logo.png';
 import useLoadingStore from '../../store/loading-store';
 import classes from './Header.module.css';
+import useUserStore from '../../store/user-store';
 
 const Header = () => {
     const [navbar, setNavbar] = useState(false);
     const [setShowMenu] = useLoadingStore(
         (state) => [state.setShowMenu]
     );
+
+    const [logoutHandler] = useUserStore(
+      (state) => [state.logoutHandler]
+  )
 
     const changeBackground = () => {
         if (window.scrollY >= 450) {
@@ -41,7 +46,7 @@ const Header = () => {
             <div>
                 <img className={classes.logo} src={brandLogo} alt="HBOMax Logo" />
             </div>
-            <div className={classes.rightNavbarItems}>
+            <div className={classes.rightNavbarItems} onClick={logoutHandler}>
                 <IonIcon id={classes.searchIcon} icon={searchOutline} className={classes.searchBar}/>
                 <div className={classes.userItems}>
                     <div className={classes.userAvatar}>

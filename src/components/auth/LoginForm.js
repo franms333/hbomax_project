@@ -9,6 +9,8 @@ import { IonIcon } from '@ionic/react';
 import { informationCircleOutline } from 'ionicons/icons';
 import useLoadingStore from '../../store/loading-store';
 import ErrorParagraph from '../UI/ErrorParagraph';
+import useUserStore from '../../store/user-store';
+import CalculateRemainingTime from '../shared/CalculateRemainingTime';
 
 const LoginForm = () => {
     const navigate = useNavigate();
@@ -18,6 +20,17 @@ const LoginForm = () => {
     const [setIsLoading] = useLoadingStore(
         (state) => [state.setIsLoading]
       );
+    
+    const [setToken,
+          setisLoggedIn,
+          logoutHandler
+        ] = useUserStore(
+        (state) => [
+            state.setToken, 
+            state.setisLoggedIn, 
+            state.logoutHandler
+        ]
+    )
       
     const [formIsValid, setFormIsValid] = useState(false);
     
@@ -53,9 +66,19 @@ const LoginForm = () => {
 
     const signUpHandler = () => {
         navigate('/signup');
-    }    
+    } 
 
     const loginHandler = (data) => {
+        const expirationTime = new Date(new Date().getTime() + (+data.expiresIn * 1000));      
+
+        setisLoggedIn(true);
+        setToken(data.idToken);
+        
+        localStorage.setItem('token', data.idToken);
+        localStorage.setItem('expirationTime', expirationTime.toISOString()); 
+
+        const remainingTime = CalculateRemainingTime(expirationTime);
+        setTimeout(logoutHandler, remainingTime);
         navigate('/home');
     }
 

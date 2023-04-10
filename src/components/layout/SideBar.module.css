@@ -16,7 +16,11 @@
     /* min-height: 100vh; */
     padding: 3rem 6rem;
     overflow-y: scroll;
-    z-index: 99;
+    z-index: 99;    
+}
+
+.containter::-webkit-scrollbar {
+    display: none;
 }
 
 .close-button{
@@ -92,3 +96,23 @@ body.sidebar-open {
         position: fixed;
     }
 }
+
+@keyframes moveIn {
+    0% {
+      /* opacity: 0; */
+      transform: translateX(-100%);
+    }
+}
+@keyframes moveOut {
+    100% {
+        /* opacity: 0; */
+        transform: translateX(-100%);
+        visibility: hidden;
+      }
+    0% {
+        /* opacity: 0; */
+        display: none;
+    }
+      
+}
+

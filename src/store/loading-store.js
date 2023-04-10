@@ -1,5 +1,7 @@
 import { create } from 'zustand'
 
+// const initialToken = localStorage.getItem('token');
+
 const useLoadingStore = create((set, get) => ({
     mainSeries: false,
     trendingShows: false,
@@ -8,6 +10,8 @@ const useLoadingStore = create((set, get) => ({
     recentMovies: false,
     isLoading:false,
     showMenu:false,
+    // token: initialToken, 
+    // isLoggedIn: !!initialToken,
     finishedMainSeries: (mainSeries) => set(()=>({mainSeries: true})),
     finishedTrendingShows: (trendingShows) => set(()=>({trendingShows: true})),
     finishedOriginalShows: (originalShows) => set(()=>({originalShows: true})),
@@ -17,7 +21,9 @@ const useLoadingStore = create((set, get) => ({
         return (get().mainSeries && get().trendingShows && get().originalShows && get().animeShows && get().recentMovies)
     },
     setIsLoading: (bool) => set(()=>({isLoading:bool})),
-    setShowMenu: (bool) => set(()=>({showMenu:bool}))
+    setShowMenu: (bool) => set(()=>({showMenu:bool})),
+    // setToken: (token) => set(()=>({token:token})),
+    // setisLoggedIn: (bool) => set(()=>({isLoggedIn:bool}))    
 }));
 
 export default useLoadingStore;

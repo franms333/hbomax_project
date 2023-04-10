@@ -1,8 +1,8 @@
 import './App.css';
-import Footer from './components/layout/Footer';
-import Header from './components/layout/Header';
 import LoginForm from './components/auth/LoginForm';
 import SignUp from './components/auth/SignUp';
+import Footer from './components/layout/Footer';
+import Header from './components/layout/Header';
 import RecentlyAddedMovies from './components/trending/movies/RecentlyAddedMovies';
 import MainSeries from './components/trending/series/MainSeries';
 import OriginalSeries from './components/trending/series/OriginalSeries';
@@ -11,10 +11,11 @@ import SeriesByCategory from './components/trending/series/SeriesByCategory';
 import LoadingSpinner from './components/UI/LoadingSpinner';
 import useLoadingStore from './store/loading-store';
 
-import {Navigate, Route, Routes, useLocation} from 'react-router-dom';
-import LoadingOverlayWrapper from 'react-loading-overlay-ts';
-import SideBar from './components/layout/SideBar';
 import { useEffect } from 'react';
+import LoadingOverlayWrapper from 'react-loading-overlay-ts';
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
+import SideBar from './components/layout/SideBar';
+import useUserStore from './store/user-store';
 
 function App() {
   const path = useLocation().pathname;
@@ -24,7 +25,8 @@ function App() {
          finishedRecentMovies,
          isReady,
          isLoading,
-         showMenu] = useLoadingStore(
+         showMenu
+        ] = useLoadingStore(
     (state) => [
                 state.finishedTrendingShows,
                 state.finishedAnimeShows,
@@ -35,6 +37,10 @@ function App() {
               ]
   );
 
+  const [isLoggedIn, logoutTimer, logoutHandler] = useUserStore(
+    (state) => [state.isLoggedIn, state.logoutTimer, state.logoutHandler]
+  )
+
   useEffect(() => {
     if (showMenu) {
         document.body.style.overflowY = 'hidden';
@@ -44,6 +50,12 @@ function App() {
         // document.body.style.height = 'auto';
     }
   }, [showMenu]);
+
+  useEffect(()=>{
+    if(isLoggedIn && logoutTimer){
+      setTimeout(logoutHandler, logoutTimer);
+    }
+  },[isLoggedIn, logoutTimer, logoutHandler])
 
   const bg_image = path === '/signup' ? 'signup_bg' : 'default_bg';
   const mainClasses = !isReady() ? 'loading_bg' : '';
@@ -102,16 +114,20 @@ function App() {
   return (
       <div className={bg_image} style={{position:'relative'}}>
         <Header />
-
         {showMenu && <SideBar />}
         <Routes>
-          <Route path='/' element={<Navigate replace to={'/login'}/>} />
+          {!isLoggedIn ? <Route path='/' element={<Navigate replace to={'/login'}/>} /> : <Route path='/' element={<Navigate replace to={'/home'}/>}/>}
 
-          <Route path='/login' element={loginPageContent}/>
+          {!isLoggedIn && <Route path='/login' element={loginPageContent}/>}
+
+          {isLoggedIn && <Route path='/home' element={homePageContent}/>}
 
           <Route path='/signup' element={signUpPageContent}/>
 
-          <Route path='/home' element={homePageContent}/>
+          <Route path='*'>
+            {!isLoggedIn && <Route path='*' element={<Navigate to='/login' />} />}
+            {isLoggedIn && <Route path='*' element={<Navigate replace to={'/home'}/>}/>}
+          </Route>
           
         </Routes>
       </div>
