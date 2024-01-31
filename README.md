@@ -11,7 +11,7 @@ This project features:
  - API REST calls for retrieving the info of movies and shows.
  - Third party libraries such as: Slick.js for carousels and React Loading Overlay for loading spinners.
 
-The app's deployed in Firebase, please use the following link to access to a real time test: 
+The app's deployed in Firebase, please use the following link to access to a real time test: https://hbomax-project.web.app/login
 
 ### `npm start`
 
